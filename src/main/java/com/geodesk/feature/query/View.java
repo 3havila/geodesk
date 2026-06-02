@@ -116,6 +116,16 @@ public abstract class View implements Features
         return newWith(newTypes, matcher, filter);
     }
 
+    @Override public Features asPoints()
+    {
+        return new PointConversionView(this, false);
+    }
+
+    @Override public Features asPointsOnSurface()
+    {
+        return new PointConversionView(this, true);
+    }
+
     @Override public Features parentsOf(Feature child)
     {
         if(child.isNode())
