@@ -131,6 +131,31 @@ public interface Features extends Iterable<Feature>
     ///
     Features in(Bounds bbox);
 
+    /// Returns a view of this collection where all features are converted
+    /// to their center point (centroid).
+    ///
+    /// - Nodes remain as-is (already points)
+    /// - Ways/Relations are converted to their centroid
+    /// - Results are always Point geometries
+    ///
+    /// @return a feature collection with point geometries
+    ///
+    default Features asPoints()
+    {
+        throw new QueryException("Not implemented for this query.");
+    }
+
+    /// Returns a view of this collection where all features are converted
+    /// to their best-fit point within the geometry (point on surface).
+    /// More accurate than centroid for non-convex shapes.
+    ///
+    /// @return a feature collection with point geometries
+    ///
+    default Features asPointsOnSurface()
+    {
+        throw new QueryException("Not implemented for this query.");
+    }
+
     /// Returns the first feature in the collection. If the collection is unordered,
     /// this method selects one of multiple features in a non-deterministic way.
     ///
